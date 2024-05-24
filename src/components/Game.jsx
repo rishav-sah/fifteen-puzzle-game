@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Puzzle from "./Puzzle";
 import { generateSolvableBoard } from "../utils/utilities";
+import Instructions from "./Instructions";
 
 const Game = () => {
   const [isRunning, setIsRunning] = useState(false);
@@ -67,6 +68,7 @@ const Game = () => {
         resetMovesAndTime={resetMovesAndTime}
         setIsSolved={setIsSolved}
       />
+      <Instructions />
     </div>
   );
 };
