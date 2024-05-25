@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Tile from "./Tile";
 import {
+  findNextMove,
   generateSolvableBoard,
   generateUnsolvableBoard,
   isPuzzleSolved,
@@ -18,6 +19,11 @@ const Puzzle = ({
 }) => {
   const [message, setMessage] = useState("The Puzzle is Solvable");
   const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started at least once
+
+  const solveOneStep = (board, setBoard) => {
+    const newBoard = findNextMove(board);
+    setBoard(newBoard);
+  };
 
   const handleShuffle = () => {
     resetMovesAndTime();
@@ -65,6 +71,7 @@ const Puzzle = ({
 
   return (
     <div className="text-center relative">
+      <button onClick={() => solveOneStep(board, setBoard)}>Help me</button>
       {message && <p className="text-center text-2xl font-bold">{message}</p>}
       <div className="mt-4 p-5 rounded-lg bg-red-300 grid grid-cols-4 grid-rows-4 gap-2 w-96 h-96 m-auto place-items-center">
         {!isRunning && (
